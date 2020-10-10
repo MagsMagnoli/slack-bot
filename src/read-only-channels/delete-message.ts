@@ -1,5 +1,5 @@
 import { Middleware, SlackEventMiddlewareArgs } from '@slack/bolt';
-import { isValidUserResponse } from './models/user-response';
+import { isValidUserResponse } from '../models/user-response';
 
 export const deleteMessage: (
   channels: string[]
