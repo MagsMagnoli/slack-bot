@@ -1,5 +1,6 @@
 import * as bolt from '@slack/bolt';
-import { initReadOnlyChannels } from './read-only-channels';
+import { initReadOnlyChannelsModule } from './read-only-channels';
+import { initContentWarningModule } from './content-warning';
 
 const PORT = process.env.PORT || 3000;
 
@@ -8,7 +9,8 @@ const app = new bolt.App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-initReadOnlyChannels(app);
+initReadOnlyChannelsModule(app);
+initContentWarningModule(app);
 
 (async () => {
   await app.start(PORT);

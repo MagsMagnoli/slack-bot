@@ -5,7 +5,7 @@ import fs from 'fs';
 
 const channels = readChannels();
 
-export function initReadOnlyChannels(app: bolt.App) {
+export function initReadOnlyChannelsModule(app: bolt.App) {
   app.message(deleteMessage(channels));
   app.command('/readonly', toggleReadOnly(channels, handleWriteChannels));
 }
