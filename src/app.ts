@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 const app = new bolt.App({
   token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
 initReadOnlyChannelsModule(app);

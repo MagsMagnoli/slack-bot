@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    environment:
+      - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET}
+      - SLACK_USER_TOKEN=${SLACK_USER_TOKEN}
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+    command: npm start

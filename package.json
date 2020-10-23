@@ -4,7 +4,9 @@
   "description": "slack-read-only-channels",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && tsc && node dist/app.js",
+    "build": "rm -rf dist && tsc",
+    "start": "tsc -w --preserveWatchOutput & node ./dist/app.js",
+    "start:prod": "node ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

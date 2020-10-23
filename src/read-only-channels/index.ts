@@ -11,10 +11,10 @@ export function initReadOnlyChannelsModule(app: bolt.App) {
 }
 
 function readChannels(): string[] {
-  const channelJSON = fs.readFileSync('./config/channels.json');
+  const channelJSON = fs.readFileSync('data/channels.json');
   return JSON.parse(channelJSON.toString());
 }
 
 function handleWriteChannels(channels: string[]) {
-  fs.writeFileSync('./config/channels.json', JSON.stringify(channels));
+  fs.writeFileSync('data/channels.json', JSON.stringify(channels));
 }
