@@ -1,5 +1,10 @@
 type UserResponse = {
-  user: { id: string; profile: { image_24: string; display_name: string }, is_admin: boolean; is_bot: boolean };
+  user: {
+    id: string;
+    profile: { image_24: string; display_name: string };
+    is_admin: boolean;
+    is_bot: boolean;
+  };
 };
 
 export function isValidUserResponse(input: unknown): input is UserResponse {

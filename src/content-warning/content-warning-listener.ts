@@ -3,7 +3,9 @@ import { composeContentWarningMessage } from './compose-content-warning-message'
 
 const filters = ['content warning', 'trigger warning', 'cw', 'tw'];
 
-export const contentWarningListener: Middleware<SlackEventMiddlewareArgs<'message'>> = async ({ payload, client, say, message }) => {
+export const contentWarningListener: Middleware<SlackEventMiddlewareArgs<
+  'message'
+>> = async ({ payload, client, say, message }) => {
   if (payload.subtype) {
     return;
   }
@@ -12,9 +14,9 @@ export const contentWarningListener: Middleware<SlackEventMiddlewareArgs<'messag
 
   const firstLine = lines.shift() ?? '';
 
-  const triggered = filters.some(item => firstLine.startsWith(item));
+  const triggered = filters.some((item) => firstLine.startsWith(item));
 
-  if (!triggered) {
+  if (!triggered || lines.length <= 0) {
     return;
   }
 
@@ -26,8 +28,10 @@ export const contentWarningListener: Middleware<SlackEventMiddlewareArgs<'messag
     token: process.env.SLACK_USER_TOKEN,
     channel: payload.channel,
     ts: payload.ts,
-    as_user: true
+    as_user: true,
   });
 
-  await say(composeContentWarningMessage(payload.user, triggerText, lines.join('\n')));
+  await say(
+    composeContentWarningMessage(payload.user, triggerText, lines.join('\n')),
+  );
 };

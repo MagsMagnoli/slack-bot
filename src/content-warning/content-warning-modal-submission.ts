@@ -1,7 +1,12 @@
 import { Middleware, SlackViewMiddlewareArgs } from '@slack/bolt';
 import { composeContentWarningMessage } from './compose-content-warning-message';
 
-export const contentWarningModalSubmission: Middleware<SlackViewMiddlewareArgs> = async ({ ack, payload, body, client }) => {
+export const contentWarningModalSubmission: Middleware<SlackViewMiddlewareArgs> = async ({
+  ack,
+  payload,
+  body,
+  client,
+}) => {
   await ack();
 
   const { values } = payload.state;
@@ -12,6 +17,6 @@ export const contentWarningModalSubmission: Middleware<SlackViewMiddlewareArgs> 
 
   await client.chat.postMessage({
     channel,
-    ...composeContentWarningMessage(body.user.id, types, message)
+    ...composeContentWarningMessage(body.user.id, types, message),
   });
 };

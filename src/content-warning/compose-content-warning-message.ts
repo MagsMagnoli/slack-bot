@@ -1,7 +1,11 @@
 import { showMessageActionId } from './index';
 import { SayArguments } from '@slack/bolt';
 
-export const composeContentWarningMessage: (userId: string, triggers: string, messageText: string) => SayArguments = (userId, triggers, messageText) => {
+export const composeContentWarningMessage: (
+  userId: string,
+  triggers: string,
+  messageText: string,
+) => SayArguments = (userId, triggers, messageText) => {
   const text = `⚠️ *Content Warning*\n<@${userId}> posted a message with a content warning of: ${triggers}`;
 
   return {
@@ -11,8 +15,8 @@ export const composeContentWarningMessage: (userId: string, triggers: string, me
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text
-        }
+          text,
+        },
       },
       {
         type: 'actions',
@@ -23,25 +27,25 @@ export const composeContentWarningMessage: (userId: string, triggers: string, me
             text: {
               type: 'plain_text',
               text: 'Show Message',
-              emoji: true
+              emoji: true,
             },
             confirm: {
               title: {
                 type: 'plain_text',
-                text: 'Message'
+                text: 'Message',
               },
               text: {
                 type: 'mrkdwn',
-                text: messageText
+                text: messageText,
               },
               confirm: {
                 type: 'plain_text',
-                text: 'Close'
-              }
-            }
-          }
-        ]
-      }
-    ]
+                text: 'Close',
+              },
+            },
+          },
+        ],
+      },
+    ],
   };
 };
