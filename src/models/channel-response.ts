@@ -3,7 +3,7 @@ type ChannelResponse = {
 };
 
 export function isValidChannelResponse(
-  input: unknown
+  input: unknown,
 ): input is ChannelResponse {
   return (
     typeof input === 'object' &&

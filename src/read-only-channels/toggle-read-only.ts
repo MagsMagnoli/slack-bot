@@ -1,12 +1,12 @@
 import { Middleware, SlackCommandMiddlewareArgs } from '@slack/bolt';
-import { isValidUserResponse } from './models/user-response';
+import { isValidUserResponse } from '../models/user-response';
 
 export const toggleReadOnly: (
   channels: string[],
-  writeChannels: (channels: string[]) => void
+  writeChannels: (channels: string[]) => void,
 ) => Middleware<SlackCommandMiddlewareArgs> = (
   channels,
-  writeChannels
+  writeChannels,
 ) => async ({ payload, ack, client, respond }) => {
   await ack();
 

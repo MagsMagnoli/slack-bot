@@ -1,7 +1,6 @@
 import * as bolt from '@slack/bolt';
-import * as fs from 'fs';
-import { deleteMessage } from './delete-message';
-import { toggleReadOnly } from './toggle-read-only';
+import { initReadOnlyChannelsModule } from './read-only-channels';
+import { initContentWarningModule } from './content-warning';
 
 const PORT = process.env.PORT || 3000;
 
@@ -12,7 +11,8 @@ const app = new bolt.App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
-app.message(deleteMessage(channels));
+initReadOnlyChannelsModule(app);
+initContentWarningModule(app);
 
 app.command('/readonly', toggleReadOnly(channels, handleWriteChannels));
 

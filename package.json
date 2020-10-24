@@ -4,7 +4,11 @@
   "description": "slack-read-only-channels",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && tsc && node dist/app.js",
+    "build": "rm -rf dist && tsc",
+    "docker": "docker-compose -f docker-compose.dev.yml up",
+    "docker-build": "docker-compose -f docker-compose.dev.yml build",
+    "start": "tsc-watch --onSuccess \"node --inspect=0.0.0.0:9229 dist/app.js\" --onFailure \"echo WHOOPS! Server compilation failed\"",
+    "start:prod": "node ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +26,9 @@
     "@slack/bolt": "^2.3.0"
   },
   "devDependencies": {
+    "nodemon": "^2.0.6",
     "prettier": "^2.1.2",
+    "tsc-watch": "^4.2.9",
     "typescript": "^4.0.3"
   }
 }
