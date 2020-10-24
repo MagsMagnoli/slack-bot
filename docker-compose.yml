@@ -11,4 +11,4 @@ services:
       - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET}
       - SLACK_USER_TOKEN=${SLACK_USER_TOKEN}
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-    command: npm start:prod
+    command: npm run start:prod
