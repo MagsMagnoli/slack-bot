@@ -1,9 +1,10 @@
-version: '3'
+version: '3.8'
 services:
   app:
     build: .
+    user: node
     volumes:
-      - ./data:/app/data
+      - ./data:/home/node/app/data
     ports:
       - 3000:3000
     environment:
@@ -11,4 +12,4 @@ services:
       - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET}
       - SLACK_USER_TOKEN=${SLACK_USER_TOKEN}
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-    command: npm start:prod
+    command: npm run start:prod
