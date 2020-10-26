@@ -6,3 +6,7 @@ node_modules/
 .idea/
 
 .env
+
+data/readonly-channels.json
+
+data/locked-threads.json
