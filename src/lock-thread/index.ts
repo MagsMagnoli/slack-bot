@@ -3,19 +3,25 @@ import { deleteMessage } from './delete-message';
 import fs from 'fs';
 import { lockThread } from './lock-thread';
 import { unlockThread } from './unlock-thread';
+import { isFeatureEnabled } from '../features/is-feature-enabled';
 
 const dataPath = 'data/locked-threads.json';
 
 const lockedThreads = readLockedThreads();
 
 export function initLockThreadModule(app: bolt.App) {
-  app.message(deleteMessage(lockedThreads));
+  app.message(
+    isFeatureEnabled('lockThread'),
+    deleteMessage(lockedThreads),
+  );
   app.event(
     'reaction_added',
+    isFeatureEnabled('lockThread'),
     lockThread(lockedThreads, handleWriteLockedThreads),
   );
   app.event(
     'reaction_removed',
+    isFeatureEnabled('lockThread'),
     unlockThread(lockedThreads, handleWriteLockedThreads),
   );
 }

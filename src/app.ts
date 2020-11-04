@@ -3,6 +3,7 @@ import { initReadOnlyChannelsModule } from './read-only-channels';
 import { initContentWarningModule } from './content-warning';
 import { initLockThreadModule } from './lock-thread';
 import { initWelcomeUserModule } from './welcome-user';
+import { initFeaturesModule } from './features';
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,6 +12,7 @@ const app = new bolt.App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
+initFeaturesModule(app);
 initWelcomeUserModule(app);
 initLockThreadModule(app);
 initReadOnlyChannelsModule(app);

@@ -2,12 +2,20 @@ import * as bolt from '@slack/bolt';
 import { deleteMessage } from './delete-message';
 import { toggleReadOnly } from './toggle-read-only';
 import fs from 'fs';
+import { isFeatureEnabled } from '../features/is-feature-enabled';
 
 const channels = readChannels();
 
 export function initReadOnlyChannelsModule(app: bolt.App) {
-  app.message(deleteMessage(channels));
-  app.command('/readonly', toggleReadOnly(channels, handleWriteChannels));
+  app.message(
+    isFeatureEnabled('readonlyChannels'),
+    deleteMessage(channels),
+  );
+  app.command(
+    '/readonly',
+    isFeatureEnabled('readonlyChannels'),
+    toggleReadOnly(channels, handleWriteChannels),
+  );
 }
 
 function readChannels(): string[] {
