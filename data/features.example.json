@@ -1,0 +1,7 @@
+{
+  "announcements": true,
+  "contentWarning": true,
+  "lockThread": true,
+  "readonlyChannels": true,
+  "welcomeUser": true
+}
