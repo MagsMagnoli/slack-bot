@@ -1,6 +1,6 @@
 import * as bolt from '@slack/bolt';
 import { contentWarningModal } from './content-warning-modal';
-import { noopAck } from '../noop-ack';
+import { noopAck } from '../../noop-ack';
 import { contentWarningListener } from './content-warning-listener';
 import { contentWarningModalSubmission } from './content-warning-modal-submission';
 import { isFeatureEnabled } from '../features/is-feature-enabled';

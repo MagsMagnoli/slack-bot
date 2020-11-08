@@ -1,5 +1,5 @@
 import { Middleware, SlackCommandMiddlewareArgs } from '@slack/bolt';
-import { isValidUserResponse } from '../models/user-response';
+import { isValidUserResponse } from '../../models/user-response';
 
 export const toggleReadOnly: (
   channels: string[],

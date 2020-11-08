@@ -1,6 +1,6 @@
 import { Middleware, SlackEventMiddlewareArgs } from '@slack/bolt';
-import { isValidUserResponse } from '../models/user-response';
-import { isValidMessageRepliedEvent } from '../models/message-replied-event';
+import { isValidUserResponse } from '../../models/user-response';
+import { isValidMessageRepliedEvent } from '../../models/message-replied-event';
 
 export const deleteMessage: (
   lockedThreads: Record<string, boolean>,

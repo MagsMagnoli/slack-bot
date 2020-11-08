@@ -1,18 +1,20 @@
-import * as bolt from '@slack/bolt';
-import { initReadOnlyChannelsModule } from './read-only-channels';
-import { initContentWarningModule } from './content-warning';
-import { initLockThreadModule } from './lock-thread';
-import { initWelcomeUserModule } from './welcome-user';
-import { initFeaturesModule } from './features';
+import { App } from '@slack/bolt';
+import { initReadOnlyChannelsModule } from './modules/read-only-channels';
+import { initContentWarningModule } from './modules/content-warning';
+import { initLockThreadModule } from './modules/lock-thread';
+import { initWelcomeUserModule } from './modules/welcome-user';
+import { initFeaturesModule } from './modules/features';
+import { initAnnouncementsModule } from './modules/announcements';
 
 const PORT = process.env.PORT || 3000;
 
-const app = new bolt.App({
+const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
 initFeaturesModule(app);
+initAnnouncementsModule(app);
 initWelcomeUserModule(app);
 initLockThreadModule(app);
 initReadOnlyChannelsModule(app);

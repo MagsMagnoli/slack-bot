@@ -1,11 +1,11 @@
 import { Middleware, SlackEventMiddlewareArgs } from '@slack/bolt';
-import { isValidUserResponse } from '../models/user-response';
-import { isValidReactionMessageItem } from '../models/reaction-message-item';
+import { isValidUserResponse } from '../../models/user-response';
+import { isValidReactionMessageItem } from '../../models/reaction-message-item';
 
-export const unlockThread: (
+export const lockThread: (
   lockedThreads: Record<string, boolean>,
   writeLockedThreads: (lockedThreads: Record<string, boolean>) => void,
-) => Middleware<SlackEventMiddlewareArgs<'reaction_removed'>> = (
+) => Middleware<SlackEventMiddlewareArgs<'reaction_added'>> = (
   lockedThreads,
   writeLockedThreads,
 ) => async ({ payload, client }) => {
@@ -15,7 +15,7 @@ export const unlockThread: (
 
   const item = isValidReactionMessageItem(payload.item) ? payload.item : null;
 
-  if (!item || !lockedThreads[`${item.channel}_${item.ts}`]) {
+  if (!item || lockedThreads[`${item.channel}_${item.ts}`]) {
     return;
   }
 
@@ -29,12 +29,12 @@ export const unlockThread: (
     return;
   }
 
-  delete lockedThreads[`${item.channel}_${item.ts}`];
+  lockedThreads[`${item.channel}_${item.ts}`] = true;
   writeLockedThreads(lockedThreads);
 
   await client.chat.postMessage({
     channel: item.channel,
-    text: 'This thread is now unlocked',
+    text: 'This thread is now locked',
     thread_ts: item.ts,
   });
 };
