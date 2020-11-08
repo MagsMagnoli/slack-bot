@@ -1,5 +1,5 @@
 import { Middleware, SlackEventMiddlewareArgs } from '@slack/bolt';
-import { isValidTeamJoinPayload } from '../models/team-join-event';
+import { isValidTeamJoinPayload } from '../../models/team-join-event';
 
 export const welcomeUser: Middleware<SlackEventMiddlewareArgs<
   'team_join'

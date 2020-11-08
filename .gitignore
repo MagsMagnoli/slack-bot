@@ -10,3 +10,9 @@ node_modules/
 data/readonly-channels.json
 
 data/locked-threads.json
+
+config/credentials.json
+
+data/features.json
+
+src/config/permissions.ts

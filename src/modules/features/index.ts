@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Features } from '../models/features';
+import { Features } from '../../models/features';
 import * as bolt from '@slack/bolt';
 import { toggleFeature } from './toggleFeature';
 

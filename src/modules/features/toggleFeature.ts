@@ -1,6 +1,6 @@
 import { Middleware, SlackEventMiddlewareArgs } from '@slack/bolt';
-import { Features } from '../models/features';
-import { isValidUserResponse } from '../models/user-response';
+import { Features } from '../../models/features';
+import { isValidUserResponse } from '../../models/user-response';
 
 enum Toggle {
   Enable = 'enable',

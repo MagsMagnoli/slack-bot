@@ -1,5 +1,5 @@
 import { NextFn } from '@slack/bolt';
-import { Features } from '../models/features';
+import { Features } from '../../models/features';
 import { features } from './index';
 
 export const isFeatureEnabled: (

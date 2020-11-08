@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/MagsMagnoli/slack-bot#readme",
   "dependencies": {
-    "@slack/bolt": "^2.3.0"
+    "@slack/bolt": "^2.3.0",
+    "googleapis": "^64.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6",
