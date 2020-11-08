@@ -1,6 +1,5 @@
 import { Middleware, SlackCommandMiddlewareArgs } from '@slack/bolt';
 import { isValidUserResponse } from '../../models/user-response';
-import { permissions } from '../../config/permissions';
 import { googleSheets } from '../../google-sheets';
 
 export const sendAnnouncement: (
@@ -24,9 +23,9 @@ export const sendAnnouncement: (
 
     try {
       const resp = await sheets.api.spreadsheets.values.get({
-        spreadsheetId: permissions.sheetId,
+        spreadsheetId: process.env.PERMISSIONS_SHEET_ID,
         auth: sheets.client,
-        range: permissions.announcementsSheet,
+        range: 'Announcements',
       });
 
       const { values } = resp.data;
