@@ -1,7 +1,8 @@
 {
-  "announcements": true,
-  "contentWarning": true,
-  "lockThread": true,
-  "readonlyChannels": true,
-  "welcomeUser": true
+  "announcements": false,
+  "contentWarning": false,
+  "lockThread": false,
+  "readonlyChannels": false,
+  "welcomeUser": false,
+  "newUserRegistration": false
 }
